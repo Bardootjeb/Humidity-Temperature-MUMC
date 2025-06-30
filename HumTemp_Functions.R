@@ -110,44 +110,6 @@ plot_range2 <- function(data, max_col, min_col, y_label, plot_title) {
     theme_minimal()
 }
 
-
-# Define a function that performs all statistical tests for two groups
-run_tests <- function(var1, var2, var_name) {
-  cat("===== Tests for", var_name, "=====\n")
-  
-  # Shapiro-Wilk test for normality
-  norm1 <- shapiro.test(var1)
-  norm2 <- shapiro.test(var2)
-  
-  cat("Shapiro-Wilk Normality Test:\n\n")
-  print(norm1)
-  cat("\n")
-  print(norm2)
-  cat("\n\n")
-  
-  normal <- norm1$p.value > 0.05 && norm2$p.value > 0.05  # Are both groups normally distributed?
-  
-  if (normal) {
-    # If both are normal, perform F-test for equality of variances
-    f_test <- var.test(var1, var2)
-    cat("F-test (equal variances):\n\n")
-    print(f_test)
-    cat("\n")
-    
-    equal_var <- f_test$p.value > 0.05  # Use equal variances if F-test is not significant
-    t_test <- t.test(var1, var2, var.equal = equal_var)  # Perform t-test
-    cat("T-test:\n\n")
-    print(t_test)
-  } else {
-    # If not normal, use non-parametric Wilcoxon rank-sum test
-    wilcox <- wilcox.test(var1, var2)
-    cat("Wilcoxon Rank-Sum Test (Mann–Whitney U):\n\n")
-    print(wilcox)
-  }
-  
-  cat("\n\n")
-}
-
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # ----------------------------
 # Function: run_tests
