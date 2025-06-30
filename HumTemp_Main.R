@@ -25,7 +25,8 @@
 # Note:
 # - Ensure that all required packages are installed before execution.
 # - Set the working directory to your local environment if different from the one defined below.
-# ==============================================================================
+
+
 # Before running this script, ensure all required R packages are installed.
 # Use the following command to install missing packages automatically.
 
@@ -39,11 +40,6 @@ if (any(!installed)) {
 } else {
   message("Packages are already installed")
 }
-# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-# Step 1. Preparatory Analysis
-
-# Set working directory to local environment (adjust as needed)
-setwd("~/Maastricht University/Biomedical Sciences/BMS year 3/BBS3006 - Thesis & Internship/Butterfly")
 
 # Source custom functions (e.g., plot_range, save.pdf, plot_range2)
 source("HumTemp_Functions.R")
@@ -56,6 +52,12 @@ library(ggplot2)    # For data visualization
 if (!dir.exists("Output")) {
   dir.create("Output")
 }
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Step 1. Preparatory Analysis
+
+# Set working directory to local environment (adjust as needed)
+setwd("~/Maastricht University/Biomedical Sciences/BMS year 3/BBS3006 - Thesis & Internship/Butterfly")
 
 # Load data from Excel file and convert to data frame
 weekdays <- read_excel("LAB.xlsx")
